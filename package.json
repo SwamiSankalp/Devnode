@@ -1,0 +1,34 @@
+{
+  "name": "devnode",
+  "version": "1.0.0",
+  "description": "Building a scheduler for DevTo articles.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SwamiSankalp/Devnode.git"
+  },
+  "author": "SwamiSankalp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SwamiSankalp/Devnode/issues"
+  },
+  "homepage": "https://github.com/SwamiSankalp/Devnode#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "cron": "^2.0.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
