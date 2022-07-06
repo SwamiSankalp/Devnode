@@ -21,9 +21,8 @@ module.exports = {
         let title = req.body.title;
         let body = req.body.body;
         let tags = req.body.tags;
-        let user = payload.user._id;
-        let userapikey = await getOne(user);
-        console.log(userapikey);
+        let safeData = { user: payload.user._id, secret: req.body.secret };
+        let userapikey = await getOne(safeData);
         let time = {
           minutes: req.body.minutes,
           hours: req.body.hours,
@@ -33,13 +32,13 @@ module.exports = {
         let bodyData = {
           title: title,
           body_markdown: body,
-          // api_key: userapikey[0].apikey,
+          api_key: userapikey,
         };
         const article = new Article({
           title: title,
           body: body,
           tags: tags,
-          author: user,
+          author: safeData.user,
         });
         article.save((err, article) => {
           if (!err) {

@@ -6,18 +6,28 @@
 
 // DEPENDENCIES
 const Key = require("../../models/devtoKey");
+const CryptoJS = require("crypto-js");
 
 module.exports = {
-  getOne: async (user) => {
-    const _id = user._id;
+  getOne: async (safeData) => {
+    const user = safeData.user;
     try {
-      const apikey = await Key.find({ "user._id": _id });
-      if (!apikey) {
-        return res.status(404).json();
+      const userApiKeys = await Key.find({ "user._id": user._id });
+      if (!userApiKeys) {
+        return `error`;
       }
-      return apikey;
+      let latestApiKey = userApiKeys[userApiKeys.length - 1].apikey;
+      let secretsafe = CryptoJS.AES.decrypt(
+        latestApiKey,
+        safeData.secret
+      ).toString(CryptoJS.enc.Utf8);
+      if (!secretsafe) {
+        console.log(`error decrypting`);
+      } else {
+        return secretsafe;
+      }
     } catch (error) {
-      res.status(500).json(error);
+      return `error`;
     }
   },
 };

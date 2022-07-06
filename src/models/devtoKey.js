@@ -38,10 +38,6 @@ devtoKeySchema.pre("save", function (next) {
     let safe = CryptoJS.AES.encrypt(key.apikey, key.secret).toString();
     key.apikey = safe;
     key.secret = "default";
-    let secretsafe = CryptoJS.AES.decrypt(key.apikey, `003059`).toString(
-      CryptoJS.enc.Utf8
-    );
-    console.log(secretsafe);
     next();
   }
 });
