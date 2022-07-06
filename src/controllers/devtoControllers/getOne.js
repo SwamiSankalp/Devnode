@@ -8,20 +8,16 @@
 const Key = require("../../models/devtoKey");
 
 module.exports = {
-  getOne: (req, res, userid) => {
-    let result = {};
-    let status = 200;
-    Key.find({ user: userid }, (err, key) => {
-      if (!err) {
-        result.status = status;
-        result.error = err;
-        result.result = key;
-      } else {
-        status = 500;
-        result.status = status;
-        result.error = err;
+  getOne: async (user) => {
+    const _id = user._id;
+    try {
+      const apikey = await Key.find({ "user._id": _id });
+      if (!apikey) {
+        return res.status(404).json();
       }
-      res.status(status).send(result);
-    });
+      return apikey;
+    } catch (error) {
+      res.status(500).json(error);
+    }
   },
 };

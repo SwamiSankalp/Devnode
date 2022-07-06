@@ -14,8 +14,8 @@ module.exports = {
     let result;
     if (authorizationHeaader) {
       // GET THE TOKEN FROM THE HEADERS
-      const token = req.headers.authorization.split(" ")[1]; // Bearer <token>
-      console.log(token);
+      const token = req.headers.authorization.split(" ")[1];
+
       // SET THE PARAMETERS TO BE PASSED IN THE TOKEN
       const options = {
         expiresIn: "2d",

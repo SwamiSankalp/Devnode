@@ -15,12 +15,14 @@ module.exports = {
     let status = 201;
 
     // REQUIRED FIELDS
-    const apiKey = req.body.apiKey;
+    const apikey = req.body.apikey;
+    const secret = req.body.secret;
     const user = req.decoded.user._id;
     //CREATING A NEW API KEY OBJECT
     const key = new Key({
-      apiKey: apiKey,
+      apikey: apikey,
       user: user,
+      secret: secret,
     });
     key.save((err, key) => {
       if (!err) {
