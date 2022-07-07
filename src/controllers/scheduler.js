@@ -6,7 +6,7 @@
 
 // DEPENDENCIES
 const { CronJob } = require("cron");
-const devtoarticle = require("./devtoarticle");
+const devtoarticle = require("./devtoControllers/devtoarticle");
 
 let scheduler = (time, bodyData) => {
   let job = new CronJob(

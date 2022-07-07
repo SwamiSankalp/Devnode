@@ -22,8 +22,12 @@ let push = async (bodyData) => {
       body_markdown: bodyData.body_markdown,
     },
   };
-  const article = await axios.post(baseURL, data, config);
-  return article.data;
+  try {
+    const article = await axios.post(baseURL, data, config);
+    return article.data;
+  } catch (error) {
+    return error;
+  }
 };
 
 module.exports = {

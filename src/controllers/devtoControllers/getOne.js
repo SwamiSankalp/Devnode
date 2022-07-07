@@ -27,7 +27,7 @@ module.exports = {
         return secretsafe;
       }
     } catch (error) {
-      return `error`;
+      return `${error}`;
     }
   },
 };
