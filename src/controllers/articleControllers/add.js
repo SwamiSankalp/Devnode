@@ -44,7 +44,8 @@ module.exports = {
           if (!err) {
             result.status = status;
             result.result = article;
-            devnode.scheduler(time, bodyData);
+            console.log(result.result._id);
+            devnode.scheduler(time, bodyData, result.result._id);
           } else {
             status = 500;
             result.status = status;

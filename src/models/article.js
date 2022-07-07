@@ -26,6 +26,10 @@ const articleSchema = new Schema({
     ref: "User",
     required: true,
   },
+  isLive: {
+    type: Boolean,
+    default: false,
+  },
   tags: {
     type: [String],
   },

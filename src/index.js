@@ -12,6 +12,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const router = express.Router();
 const routes = require("./routes/index");
+const Article = require("./models/article");
 
 dotenv.config();
 
@@ -39,8 +40,13 @@ mongoose
 
 // ROUTES
 app.use("/api/v1", routes(router));
-app.get("/api/v1", (req, res) => {
-  res.json(`Hi There`);
+app.get("/api/v1", async (req, res) => {
+  try {
+    let articles = await Article.find();
+    res.json(articles);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.listen(PORT, () => {

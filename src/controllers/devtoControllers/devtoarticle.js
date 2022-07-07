@@ -7,8 +7,9 @@
 // DEPENDENCIES
 const axios = require("axios");
 const baseURL = `https://dev.to/api/articles`;
+const { update } = require("../articleControllers/updateStatus");
 
-let push = async (bodyData) => {
+let push = async (bodyData, _id) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +25,12 @@ let push = async (bodyData) => {
   };
   try {
     const article = await axios.post(baseURL, data, config);
-    return article.data;
+    const updateStatus = await update(_id);
+    let response = {
+      article: article.data,
+      status: updateStatus.data,
+    };
+    return response;
   } catch (error) {
     return error;
   }
